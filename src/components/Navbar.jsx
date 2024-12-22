@@ -42,10 +42,30 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    {
-      user? <button className='btn'  onClick={handleSignOut}>logout</button>
-      :<Link to='/login'><button className='btn'>Login</button></Link>
-    }
+    
+      {
+      user ? (
+        <div className="dropdown dropdown-end flex items-center">
+         <div>
+         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user.photoURL} alt="User Profile" title={user.displayName} />
+            </div>
+          </div>
+          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            <li><Link to='/add-item'>Add Lost & Found Item</Link></li>
+            <li><Link to='/recovered-items'>All Recovered Items</Link></li>
+            <li><Link to='/my-items'>Manage My Items</Link></li>
+            
+          </ul>
+         </div>
+          <button className='btn' onClick={handleSignOut}>Logout</button>
+        </div>
+      ) : (
+        <Link to='/login' className="btn">Login</Link>
+      )
+      }
+
   </div>
  
 </div>
@@ -53,3 +73,17 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

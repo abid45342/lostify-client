@@ -18,7 +18,7 @@ const Login = () => {
                     title: 'Login Successful',
                     text: 'Welcome back!',
                 });
-                navigate('/dashboard'); // Navigate to the dashboard or another page after login
+                 // Navigate to the dashboard or another page after login
             })
             .catch((error) => {
                 Swal.fire({

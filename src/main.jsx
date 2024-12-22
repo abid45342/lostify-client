@@ -12,6 +12,10 @@ import LostFound from './pages/LostFound.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
+import AddItems from './pages/AddItems.jsx';
+import RecoveredItems from './pages/RecoveredItems.jsx';
+import PrivateRoute from './PrivateRoute.jsx';
+import MyItems from './pages/MyItems.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +28,8 @@ const router = createBrowserRouter([
       },
       {
         path:"/Lostfound",
-        element:<LostFound></LostFound>
+        element:<LostFound></LostFound>,
+        loader:()=>fetch('http://localhost:5000/items')
       },
       {
         path: "/login",
@@ -33,7 +38,24 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element:<Register></Register>
+      },
+      {
+        path:'/add-item',
+        element:<PrivateRoute><AddItems></AddItems></PrivateRoute>
+
+      },
+      {
+        path:'/recovered-items',
+        element:<PrivateRoute><RecoveredItems></RecoveredItems></PrivateRoute>
+      },
+
+      {
+        path:'/my-items',
+        element:<PrivateRoute>
+          <MyItems></MyItems>
+        </PrivateRoute>
       }
+
 
     ]
   },
