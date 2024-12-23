@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const LostFound = () => {
   const items = useLoaderData(); // Fetched data
@@ -12,26 +12,28 @@ const LostFound = () => {
         {items.map(item => (
           <div
             key={item._id}
-            className="card bg-white shadow-md rounded-lg overflow-hidden"
+            className="card bg-white shadow-lg rounded-xl  overflow-hidden  hover:shadow-2xl transition-shadow duration-300"
           >
             <img
               src={item.thumbnail}
               alt={item.title}
-              className="w-full h-48 object-cover"
+              className="w-full h-48    rounded-xl"
             />
             <div className="p-4">
               <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
               <p className="text-sm text-gray-600">Category: {item.category}</p>
               <p className="text-sm text-gray-600">Location: {item.location}</p>
               <p className="text-sm text-gray-600">
-                Date Lost: {new Date(item.dateLost).toLocaleDateString()}
+                Date Lost/Found: {new Date(item.dateLost).toLocaleDateString()}
               </p>
-              <button
-                className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                onClick={() => window.location.href = `/details/${item._id}`}
-              >
-                View Details
-              </button>
+              <button className="mt-4">
+  <Link
+    to={`/itemDetails/${item._id}`}
+    className="block bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 shadow-md hover:shadow-lg text-center"
+  >
+    View Details
+  </Link>
+</button>
             </div>
           </div>
         ))} 

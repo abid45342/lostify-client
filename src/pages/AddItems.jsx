@@ -17,7 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddItems = () => {
     const { user } = useContext(AuthContext); // Get logged-in user info
     const [postType, setPostType] = useState('lost');
-    const [dateLost, setDateLost] = useState(new Date());
+    const [dateLostFound, setDateLostFound] = useState(new Date());
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -30,7 +30,7 @@ const AddItems = () => {
         const email= user?.email;
         const name= user?.displayName;
         // const contactInfo = { email: user?.email, name: user?.displayName };
-        const newItem = { postType, thumbnail, title, description, category, location, dateLost,name,email  };
+        const newItem = { postType, thumbnail, title, description, category, location, dateLostFound,name,email  };
 
         // Handle file upload if needed
         fetch('http://localhost:5000/addItems', {
@@ -138,10 +138,10 @@ const AddItems = () => {
                     </div>
                     {/* Date Lost */}
                     <div className="mt-6">
-                        <label className="block text-gray-700 font-bold mb-2">Date Lost</label>
+                        <label className="block text-gray-700 font-bold mb-2">Date Lost/Found</label>
                         <DatePicker
-                            selected={dateLost}
-                            onChange={(date) => setDateLost(date)}
+                            selected={dateLostFound}
+                            onChange={(date) => setDateLostFound(date)}
                             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             dateFormat="yyyy-MM-dd"
                             required

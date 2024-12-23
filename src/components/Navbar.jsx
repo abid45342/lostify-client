@@ -54,7 +54,7 @@ const Navbar = () => {
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li><Link to='/add-item'>Add Lost & Found Item</Link></li>
-            <li><Link to='/recovered-items'>All Recovered Items</Link></li>
+            <li><Link to='/allrecovered'>All Recovered Items</Link></li>
             <li><Link to='/my-items'>Manage My Items</Link></li>
             
           </ul>

@@ -16,6 +16,10 @@ import AddItems from './pages/AddItems.jsx';
 import RecoveredItems from './pages/RecoveredItems.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
 import MyItems from './pages/MyItems.jsx';
+import ItemDetails from './pages/ItemDetails.jsx';
+import UpdateItem from './pages/UpdateItem.jsx';
+import Error from './pages/Error.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -45,20 +49,44 @@ const router = createBrowserRouter([
 
       },
       {
-        path:'/recovered-items',
-        element:<PrivateRoute><RecoveredItems></RecoveredItems></PrivateRoute>
+        path:'/allrecovered',
+        element:<PrivateRoute><RecoveredItems></RecoveredItems></PrivateRoute>,
+        loader:()=>fetch('http://localhost:5000/allrecovered')
       },
 
       {
         path:'/my-items',
         element:<PrivateRoute>
           <MyItems></MyItems>
+        </PrivateRoute>,
+       
+      },
+      {
+        path:'/itemDetails/:id',
+        element:<PrivateRoute>
+          <ItemDetails></ItemDetails>
+        </PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:5000/items/${params.id}`)
+       
+        
+      },
+      {
+        path:'/updateItem',
+        element:<PrivateRoute>
+          <UpdateItem></UpdateItem>
         </PrivateRoute>
       }
+ 
 
 
     ]
+
   },
+  {
+    path: "*",
+    element:<Error></Error>
+  }
+
 ]);
 
 
