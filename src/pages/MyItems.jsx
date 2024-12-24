@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { Link, Links, useNavigate } from 'react-router-dom';
 import UpdateItem from './UpdateItem';
+import { Helmet } from 'react-helmet';
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
@@ -39,6 +40,9 @@ const MyItems = () => {
 console.log(items)
     return (
         <div className="container mx-auto p-4">
+            <Helmet>
+            <title>Manage My Items</title>
+            </Helmet>
             <h1 className="text-2xl font-bold mb-4">Manage My Items</h1>
             {items.length > 0 ? (
                 <table className="table-auto w-full border-collapse border border-gray-300">

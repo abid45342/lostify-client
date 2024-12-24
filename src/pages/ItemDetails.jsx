@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import RecoveryModal from '../components/RecoveryModal';
+import { Helmet } from 'react-helmet';
 
 const ItemDetails = () => {
   const item = useLoaderData(); // Fetch item details
@@ -16,6 +17,9 @@ const ItemDetails = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>Item-Details</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">{item.title}</h1>
       <img src={item.thumbnail} alt={item.title} className="w-full h-60 object-cover rounded-lg" />
       <p className="text-lg mt-2">Category: {item.category}</p>

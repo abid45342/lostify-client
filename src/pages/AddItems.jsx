@@ -13,6 +13,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet';
 
 const AddItems = () => {
     const { user } = useContext(AuthContext); // Get logged-in user info
@@ -57,6 +58,9 @@ const AddItems = () => {
     return (
 
         <div className="py-20 min-h-screen flex items-center justify-center bg-gray-100">
+            <Helmet>
+                <title>Add Lost & Found Item</title>
+            </Helmet>
             <ToastContainer></ToastContainer>
             <div className="bg-white rounded-xl p-8 shadow-lg w-full max-w-4xl">
                 <h2 className="text-2xl font-bold mb-6 text-center">Add Lost & Found Item</h2>

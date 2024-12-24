@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
     const { createUser, updateUserProfile, } = useContext(AuthContext);
@@ -52,6 +53,9 @@ const Register = () => {
 
     return (
         <div className="hero bg-base-200 min-h-screen">
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left w-full max-w-sm shrink-0">
                     {/* Optionally, add a Lottie or other content here */}

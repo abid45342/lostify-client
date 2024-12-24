@@ -23,6 +23,7 @@ const RecoveryModal = ({ item, closeModal }) => {
       itemCategory: item.category,
       itemLocation: item.location,
       itemDateLost: item.dateLost,
+      itemPhotoURL: item.thumbnail,
       recoveredLocation,
       recoveryDate,
       recoveredBy: {

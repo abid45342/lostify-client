@@ -6,6 +6,7 @@
 
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { Helmet } from 'react-helmet';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 const UpdateItem = () => {
@@ -46,6 +47,9 @@ const UpdateItem = () => {
 
   return (
     <div className="container mx-auto p-6">
+        <Helmet>
+        <title>Update Item</title>  
+        </Helmet>
       <h1 className="text-2xl font-bold mb-4">Update Item</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
