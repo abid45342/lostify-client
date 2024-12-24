@@ -3,6 +3,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import { Link, Links, useNavigate } from 'react-router-dom';
 import UpdateItem from './UpdateItem';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
@@ -10,9 +11,10 @@ const MyItems = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/items?email=${user.email}`)
-            .then((res) => res.json())
-            .then((data) => setItems(data))
+
+        axios.get(`http://localhost:5000/items?email=${user.email}`,{withCredentials:true})
+        .then(res=>setItems(res.data))
+        
             .catch((error) => console.error('Error fetching items:', error));
     }, []);
  

@@ -19,6 +19,7 @@ import MyItems from './pages/MyItems.jsx';
 import ItemDetails from './pages/ItemDetails.jsx';
 import UpdateItem from './pages/UpdateItem.jsx';
 import Error from './pages/Error.jsx';
+import axios from 'axios';
 
 
 const router = createBrowserRouter([
@@ -27,14 +28,15 @@ const router = createBrowserRouter([
     element: <Layout></Layout>,
     children: [
       {
-        path:"/home",
+        path:"/",
         element:<Home></Home>
       },
       {
         path:"/Lostfound",
         element:<LostFound></LostFound>,
-        loader:()=>fetch('http://localhost:5000/items')
+        loader:()=>fetch('http://localhost:5000/allitems')
       },
+      
       {
         path: "/login",
         element:<Login></Login>
@@ -51,7 +53,10 @@ const router = createBrowserRouter([
       {
         path:'/allrecovered',
         element:<PrivateRoute><RecoveredItems></RecoveredItems></PrivateRoute>,
-        loader:()=>fetch('http://localhost:5000/allrecovered')
+        loader:()=>{
+          return axios.get('http://localhost:5000/allrecovered',{withCredentials:true})
+          .then(res=>res.data)
+        }
       },
 
       {
@@ -66,7 +71,10 @@ const router = createBrowserRouter([
         element:<PrivateRoute>
           <ItemDetails></ItemDetails>
         </PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/items/${params.id}`)
+        loader:({params})=>{
+          return axios.get(`http://localhost:5000/items/${params.id}`,{withCredentials:true})
+          .then(res=>res.data)
+        }
        
         
       },

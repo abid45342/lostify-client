@@ -34,12 +34,13 @@ const AddItems = () => {
         const newItem = { postType, thumbnail, title, description, category, location, dateLostFound,name,email  };
 
         // Handle file upload if needed
-        fetch('http://localhost:5000/addItems', {
+        fetch('http://localhost:5000/addItems ', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newItem),
+            credentials: 'include', 
         })
             .then((res) => res.json())
             .then((data) => {

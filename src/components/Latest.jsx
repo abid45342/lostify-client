@@ -44,7 +44,7 @@ const Latest = () => {
 
     // Fetch data from the backend
     useEffect(() => {
-        fetch('http://localhost:5000/items')
+        fetch('http://localhost:5000/allitems')
             .then(res => res.json())
             .then(data => setItems(data))
             .catch(error => console.error('Error fetching data:', error));

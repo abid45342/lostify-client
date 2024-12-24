@@ -3,6 +3,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 const Login = () => {
     const { singInUser, singInWithGoogle } = useContext(AuthContext);
@@ -14,12 +15,18 @@ const Login = () => {
         e.preventDefault();
         singInUser(email, password)
             .then(() => {
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successful',
                     text: 'Welcome back!',
                 });
-                 // Navigate to the dashboard or another page after login
+                // const user = {email:email}
+                // axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
+                // .then(res=>{
+                //     console.log(res.data);
+                // })
+                
             })
             .catch((error) => {
                 Swal.fire({
