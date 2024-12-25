@@ -35,7 +35,7 @@ const RecoveryModal = ({ item, closeModal }) => {
 
 
     // Save recovery data to recovered collection
-    fetch('http://localhost:5000/recovered', {
+    fetch('https://server-delta-eight-10.vercel.app/recovered', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(recoveryData),
@@ -44,7 +44,7 @@ const RecoveryModal = ({ item, closeModal }) => {
       .then(data => {
         if (data.insertedId) {
           alert('Item marked as recovered!')
-          fetch(`http://localhost:5000/items/${item._id}`, {
+          fetch(`https://server-delta-eight-10.vercel.app/items/${item._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: 'recovered' })

@@ -24,7 +24,7 @@
 //   useEffect(() => {
 //     const fetchItem = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/items/${id}`, { withCredentials: true });
+//         const response = await axios.get(`https://server-delta-eight-10.vercel.app/items/${id}`, { withCredentials: true });
 //         setItem(response.data);
 //       } catch (error) {
 //         console.error('Error fetching item details:', error);
@@ -97,7 +97,7 @@ const ItemDetails = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/items/${id}`, { withCredentials: true });
+        const response = await axios.get(`https://server-delta-eight-10.vercel.app/items/${id}`, { withCredentials: true });
         setItem(response.data);
       } catch (err) {
         console.error('Error fetching item details:', err);

@@ -16,7 +16,7 @@ const LostFound = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch('http://localhost:5000/allitems');
+        const response = await fetch('https://server-delta-eight-10.vercel.app/allitems');
         if (!response.ok) throw new Error('Failed to fetch data');
         const data = await response.json();
         setItems(data);

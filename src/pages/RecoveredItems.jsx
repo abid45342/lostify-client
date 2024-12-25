@@ -131,7 +131,7 @@ const RecoveredItems = () => {
 
   useEffect(() => {
     // Fetch data from server
-    axios.get('http://localhost:5000/allrecovered', { withCredentials: true })
+    axios.get('https://server-delta-eight-10.vercel.app/allrecovered', { withCredentials: true })
       .then((response) => {
         setAllRecoveredItems(response.data);
         setLoading(false); // Data is loaded, set loading to false
