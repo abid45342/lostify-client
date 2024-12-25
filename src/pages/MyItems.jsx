@@ -3,6 +3,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import { nav } from 'framer-motion/client';
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
@@ -14,10 +15,15 @@ const MyItems = () => {
         axios
             .get(`http://localhost:5000/items?email=${user.email}`, { withCredentials: true })
             .then((res) => {
+               
                 setItems(res.data);
                 setLoading(false); // Set loading to false after data is fetched
             })
             .catch((error) => {
+                console.log(error.status)
+                if ( (error.status === 401 || error.status === 403)) {
+                    navigate('/login');
+                }
                 console.error('Error fetching items:', error);
                 setLoading(false); // Set loading to false even if there's an error
             });

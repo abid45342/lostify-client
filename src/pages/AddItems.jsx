@@ -1,12 +1,4 @@
-
-
-
-
-
-
-
-
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider'; // Assumes you have a context for user authentication.
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
@@ -15,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import { use } from 'react';
 
 const AddItems = () => {
     const { user } = useContext(AuthContext); // Get logged-in user info
@@ -24,48 +17,64 @@ const AddItems = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        // Collect data from the form
         const thumbnail = e.target.thumbnail.value;
         const title = e.target.title.value;
         const description = e.target.description.value;
         const category = e.target.category.value;
         const location = e.target.location.value;
-        const email= user?.email;
-        const name= user?.displayName;
-        // const contactInfo = { email: user?.email, name: user?.displayName };
-        const newItem = { postType, thumbnail, title, description, category, location, dateLostFound,name,email  };
+        const email = user?.email;
+        const name = user?.displayName;
 
-        // Handle file upload if needed
-        axios
-        .post(
-          'http://localhost:5000/addItems',
-          newItem,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            withCredentials: true, // Equivalent to fetch's `credentials: 'include'`
-          }
-        )
-        .then((response) => {
-          const data = response.data;
-          console.log(data);
-          if (data.insertedId) {
-            toast.success('Item Successfully Added!');
-          }
+        const newItem = {
+            postType,
+            thumbnail,
+            title,
+            description,
+            category,
+            location,
+            dateLostFound,
+            name,
+            email
+        };
+
+
+        axios.post('http://localhost:5000/addItems',{ newItem}, { withCredentials: true })
+        .then(res=>{
+            console.log(res.data)
+            if(res.data.insertedId){
+                toast.success('Item Successfully Added!');
+            }
+            
         })
-        .catch((error) => {
-          console.error(error);
-          toast.error('Failed to Add Item!');
-        });
+        .catch(error=> {
+                    console.log(error)
+                    if (error.status === 401 || error.status === 403) {
+                        navigate('/login');
+                    }
+                    toast.error('Failed to Add Item!');
+                })
+
+// Runs once when the component mounts.
+    
+
+
+
+
+
     };
+    
+
+
+    
 
     return (
-
         <div className="py-20 min-h-screen flex items-center justify-center bg-gray-100">
             <Helmet>
                 <title>Add Lost & Found Item</title>
             </Helmet>
-            <ToastContainer></ToastContainer>
+            <ToastContainer />
             <div className="bg-white rounded-xl p-8 shadow-lg w-full max-w-4xl">
                 <h2 className="text-2xl font-bold mb-6 text-center">Add Lost & Found Item</h2>
                 <form onSubmit={handleSubmit}>
@@ -84,6 +93,7 @@ const AddItems = () => {
                                 <option value="found">Found</option>
                             </select>
                         </div>
+
                         {/* Thumbnail */}
                         <div>
                             <label className="block text-gray-700 font-bold mb-2">Thumbnail URL</label>
@@ -96,6 +106,7 @@ const AddItems = () => {
                             />
                         </div>
                     </div>
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
                         {/* Title */}
                         <div>
@@ -108,6 +119,7 @@ const AddItems = () => {
                                 required
                             />
                         </div>
+
                         {/* Category */}
                         <div>
                             <label className="block text-gray-700 font-bold mb-2">Category</label>
@@ -122,6 +134,7 @@ const AddItems = () => {
                             </select>
                         </div>
                     </div>
+
                     {/* Description */}
                     <div className="mt-6">
                         <label className="block text-gray-700 font-bold mb-2">Description</label>
@@ -133,6 +146,7 @@ const AddItems = () => {
                             required
                         ></textarea>
                     </div>
+
                     {/* Location */}
                     <div className="mt-6">
                         <label className="block text-gray-700 font-bold mb-2">Location</label>
@@ -144,7 +158,8 @@ const AddItems = () => {
                             required
                         />
                     </div>
-                    {/* Date Lost */}
+
+                    {/* Date Lost/Found */}
                     <div className="mt-6">
                         <label className="block text-gray-700 font-bold mb-2">Date Lost/Found</label>
                         <DatePicker
@@ -155,6 +170,7 @@ const AddItems = () => {
                             required
                         />
                     </div>
+
                     {/* User Info */}
                     <div className="mt-6 flex justify-between gap-4">
                         {/* User Email */}
@@ -167,6 +183,7 @@ const AddItems = () => {
                                 className="w-full px-3 py-2 border bg-gray-100 rounded-lg"
                             />
                         </div>
+
                         {/* User Name */}
                         <div className="flex-1">
                             <label className="block text-gray-700 font-bold mb-2">User Name</label>
@@ -178,6 +195,7 @@ const AddItems = () => {
                             />
                         </div>
                     </div>
+
                     {/* Add Button */}
                     <button
                         type="submit"
