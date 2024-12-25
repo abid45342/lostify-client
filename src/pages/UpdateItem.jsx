@@ -39,7 +39,7 @@ const UpdateItem = () => {
       .then(() => {
         alert('Item updated successfully!');
         navigate('/my-items');
-         // Redirect after successful update
+        // Redirect after successful update
       })
       .catch((error) => console.error('Error updating item:', error));
   };

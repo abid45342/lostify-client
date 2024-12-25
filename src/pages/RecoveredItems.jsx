@@ -116,10 +116,10 @@
 
 
 
-import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import axios from 'axios';
-import { FaTh, FaList } from 'react-icons/fa'; // Import React Icons
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { FaList, FaTh } from 'react-icons/fa'; // Import React Icons
 import { useNavigate } from 'react-router-dom';
 
 const RecoveredItems = () => {
@@ -137,9 +137,9 @@ const RecoveredItems = () => {
       })
       .catch((error) => {
         console.log(error.status)
-                if ( (error.status === 401 || error.status === 403)) {
-                    navigate('/login');
-                }
+        if ((error.status === 401 || error.status === 403)) {
+          navigate('/login');
+        }
         console.error('Error fetching recovered items:', error);
         setLoading(false); // Even if there's an error, stop loading
       });

@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../provider/AuthProvider';
-import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
     const { singInUser, singInWithGoogle } = useContext(AuthContext);
@@ -26,7 +25,7 @@ const Login = () => {
                 // .then(res=>{
                 //     console.log(res.data);
                 // })
-                
+
             })
             .catch((error) => {
                 Swal.fire({
@@ -45,7 +44,7 @@ const Login = () => {
                     title: 'Login Successful',
                     text: 'Welcome back!',
                 });
-                
+
             })
             .catch((error) => {
                 Swal.fire({

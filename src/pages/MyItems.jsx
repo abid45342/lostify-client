@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../provider/AuthProvider';
-import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import axios from 'axios';
-import { nav } from 'framer-motion/client';
+import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
@@ -15,13 +14,13 @@ const MyItems = () => {
         axios
             .get(`http://localhost:5000/items?email=${user.email}`, { withCredentials: true })
             .then((res) => {
-               
+
                 setItems(res.data);
                 setLoading(false); // Set loading to false after data is fetched
             })
             .catch((error) => {
                 console.log(error.status)
-                if ( (error.status === 401 || error.status === 403)) {
+                if ((error.status === 401 || error.status === 403)) {
                     navigate('/login');
                 }
                 console.error('Error fetching items:', error);
@@ -29,7 +28,7 @@ const MyItems = () => {
             });
     }, [user.email]);
 
- 
+
 
     const handleDelete = (itemId) => {
         const confirmation = window.confirm('Are you sure you want to delete this item?');
@@ -48,7 +47,7 @@ const MyItems = () => {
                 });
         }
     };
-    
+
 
     const handleUpdate = (item) => {
         navigate('/updateItem', { state: { item } }); // Navigate and pass item via state

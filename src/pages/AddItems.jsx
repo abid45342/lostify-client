@@ -1,13 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../provider/AuthProvider'; // Assumes you have a context for user authentication.
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useContext, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Helmet } from 'react-helmet';
-import axios from 'axios';
-import { use } from 'react';
+import { AuthContext } from '../provider/AuthProvider'; // Assumes you have a context for user authentication.
 
 const AddItems = () => {
     const { user } = useContext(AuthContext); // Get logged-in user info
@@ -17,7 +16,7 @@ const AddItems = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         // Collect data from the form
         const thumbnail = e.target.thumbnail.value;
         const title = e.target.title.value;
@@ -40,34 +39,34 @@ const AddItems = () => {
         };
 
 
-        axios.post('http://localhost:5000/addItems',{ newItem}, { withCredentials: true })
-        .then(res=>{
-            console.log(res.data)
-            if(res.data.insertedId){
-                toast.success('Item Successfully Added!');
-            }
-            
-        })
-        .catch(error=> {
-                    console.log(error)
-                    if (error.status === 401 || error.status === 403) {
-                        navigate('/login');
-                    }
-                    toast.error('Failed to Add Item!');
-                })
+        axios.post('http://localhost:5000/addItems', { newItem }, { withCredentials: true })
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    toast.success('Item Successfully Added!');
+                }
 
-// Runs once when the component mounts.
-    
+            })
+            .catch(error => {
+                console.log(error)
+                if (error.status === 401 || error.status === 403) {
+                    navigate('/login');
+                }
+                toast.error('Failed to Add Item!');
+            })
+
+        // Runs once when the component mounts.
+
 
 
 
 
 
     };
-    
 
 
-    
+
+
 
     return (
         <div className="py-20 min-h-screen flex items-center justify-center bg-gray-100">

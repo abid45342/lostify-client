@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { createContext } from "react";
-import app from '../firebase/Firebase.init';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import axios from 'axios';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import app from '../firebase/Firebase.init';
 
 
 
@@ -11,21 +10,21 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-const AuthProvider = ({children}) => {
-    const [user,setUser]=useState(null);
-    const [loading,setLoading] = useState(true);
-    
+const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-   
+
+
 
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const updateUserProfile = (name,photoURL)=>{
+    const updateUserProfile = (name, photoURL) => {
         setLoading(true);
-        return updateProfile(auth.currentUser,{
+        return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photoURL
         })
@@ -53,23 +52,23 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            if(currentUser?.email){
-                const user={email:currentUser.email}
-                axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
-                .then(res=>{
-                    console.log("login token",res.data);
-                })
+            if (currentUser?.email) {
+                const user = { email: currentUser.email }
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log("login token", res.data);
+                    })
             }
-            else{
-                axios.post('http://localhost:5000/logout',{},{withCredentials:true})
-                .then(res=>{
-                    console.log("logout token",res.data);
-                })
+            else {
+                axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
+                    .then(res => {
+                        console.log("logout token", res.data);
+                    })
             }
             setLoading(false);
         });
         return unsubscribe;
-},[])
+    }, [])
 
 
 
@@ -85,23 +84,23 @@ const AuthProvider = ({children}) => {
         signOutUser,
         updateUserProfile,
         setLoading,
-        
-    
-        
+
+
+
     }
 
-   
 
-         return (
-            <AuthContext.Provider value={authInfo}>
-                {children}
-                
-            </AuthContext.Provider>
-        );
 
-    
+    return (
+        <AuthContext.Provider value={authInfo}>
+            {children}
 
-    
+        </AuthContext.Provider>
+    );
+
+
+
+
 };
 
 export default AuthProvider;
