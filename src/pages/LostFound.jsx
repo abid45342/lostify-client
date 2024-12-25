@@ -93,36 +93,52 @@
 
 
 
-
-
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const LostFound = () => {
-  const items = useLoaderData(); // Fetched data via loader
-  const [searchQuery, setSearchQuery] = useState('');
+  const [items, setItems] = useState([]); // State to store the fetched items
+  const [searchQuery, setSearchQuery] = useState(''); // Search query
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
-  // Show a loading spinner until items are loaded
-  if (!items) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <Helmet>
-          <title>Loading...</title>
-        </Helmet>
-        <span className="loading loading-ring loading-lg"></span> {/* Tailwind loading spinner */}
-      </div>
-    );
-  }
+  // Fetch items from API
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/allitems');
+        if (!response.ok) throw new Error('Failed to fetch data');
+        const data = await response.json();
+        setItems(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError('Unable to fetch items. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Filter items based on the search query (title or location)
+    fetchItems();
+  }, []);
+
+  // Filter items based on search query
   const filteredItems = items.filter(
     (item) =>
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.location.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Helmet>
+          <title>Loading...</title>
+        </Helmet>
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -141,6 +157,9 @@ const LostFound = () => {
           className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
+
+      {/* Error Message */}
+      {error && <div className="text-red-500 text-center">{error}</div>}
 
       {/* Items Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

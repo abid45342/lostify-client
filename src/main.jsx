@@ -34,11 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/Lostfound",
-        element: <LostFound />,
-        loader: async () => {
-          const response = await fetch('http://localhost:5000/allitems');
-          return response.json();  // Make sure to return JSON data
-        },
+        element: <LostFound />, // Directly reference 
       },
       
       {

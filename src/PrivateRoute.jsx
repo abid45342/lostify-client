@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from './provider/AuthProvider';
-import { div, h1 } from 'framer-motion/client';
+
 
 const PrivateRoute = ({children}) => {
     const { user, loading } = useContext(AuthContext);
@@ -10,8 +10,7 @@ const PrivateRoute = ({children}) => {
     console.log(location)
 
     if(loading){
-        return <h1>hello</h1>
-        // <span className="loading loading-ring loading-lg" />
+        return <span className="loading loading-ring loading-lg" />
 
             
            

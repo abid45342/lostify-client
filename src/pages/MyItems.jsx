@@ -23,20 +23,26 @@ const MyItems = () => {
             });
     }, [user.email]);
 
+ 
+
     const handleDelete = (itemId) => {
         const confirmation = window.confirm('Are you sure you want to delete this item?');
         if (confirmation) {
-            fetch(`http://localhost:5000/items/${itemId}`, {
-                method: 'DELETE',
-            })
-                .then((res) => res.json())
+            axios
+                .delete(`http://localhost:5000/items/${itemId}`, {
+                    withCredentials: true, // Include credentials (cookies or authentication headers) in the request
+                })
                 .then(() => {
                     setItems(items.filter((item) => item._id !== itemId)); // Remove item from state
                     alert('Item deleted successfully!');
                 })
-                .catch((error) => console.error('Error deleting item:', error));
+                .catch((error) => {
+                    console.error('Error deleting item:', error);
+                    alert('Failed to delete the item.');
+                });
         }
     };
+    
 
     const handleUpdate = (item) => {
         navigate('/updateItem', { state: { item } }); // Navigate and pass item via state
