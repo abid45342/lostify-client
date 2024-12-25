@@ -39,7 +39,7 @@ const AddItems = () => {
         };
 
 
-        axios.post('http://localhost:5000/addItems',  newItem , { withCredentials: true })
+        axios.post('http://localhost:5000/addItems', newItem, { withCredentials: true })
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {
