@@ -25,7 +25,7 @@ const ItemDetails = () => {
       <p className="text-lg mt-2">Category: {item.category}</p>
       <p className="text-lg">Location: {item.location}</p>
       <p className="text-lg">Description: {item.description}</p>
-      <p className="text-lg">Date Lost: {new Date(item.dateLost).toLocaleDateString()}</p>
+      <p className="text-lg">Date Lost: {new Date(item.dateLostFound).toLocaleDateString()}</p>
       <button
         className={`mt-4 py-2 px-4 rounded-lg text-white ${
           item.postType === 'lost' ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-500 hover:bg-blue-600'
