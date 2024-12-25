@@ -14,6 +14,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 const AddItems = () => {
     const { user } = useContext(AuthContext); // Get logged-in user info
@@ -34,26 +35,28 @@ const AddItems = () => {
         const newItem = { postType, thumbnail, title, description, category, location, dateLostFound,name,email  };
 
         // Handle file upload if needed
-        fetch('http://localhost:5000/addItems ', {
-            method: 'POST',
+        axios
+        .post(
+          'http://localhost:5000/addItems',
+          newItem,
+          {
             headers: {
-                'Content-Type': 'application/json',
+              'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newItem),
-            credentials: 'include', 
+            withCredentials: true, // Equivalent to fetch's `credentials: 'include'`
+          }
+        )
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          if (data.insertedId) {
+            toast.success('Item Successfully Added!');
+          }
         })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                if (data.insertedId) {
-                    toast.success('Item Successfully Added!');
-                 
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-                toast.error('Failed to Add Item!');
-            });
+        .catch((error) => {
+          console.error(error);
+          toast.error('Failed to Add Item!');
+        });
     };
 
     return (

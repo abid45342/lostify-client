@@ -22,6 +22,7 @@ import Error from './pages/Error.jsx';
 import axios from 'axios';
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,9 +33,12 @@ const router = createBrowserRouter([
         element:<Home></Home>
       },
       {
-        path:"/Lostfound",
-        element:<LostFound></LostFound>,
-        loader:()=>fetch('http://localhost:5000/allitems')
+        path: "/Lostfound",
+        element: <LostFound />,
+        loader: async () => {
+          const response = await fetch('http://localhost:5000/allitems');
+          return response.json();  // Make sure to return JSON data
+        },
       },
       
       {
@@ -51,18 +55,16 @@ const router = createBrowserRouter([
 
       },
       {
-        path:'/allrecovered',
-        element:<PrivateRoute><RecoveredItems></RecoveredItems></PrivateRoute>,
-        loader:()=>{
-          return axios.get('http://localhost:5000/allrecovered',{withCredentials:true})
-          .then(res=>res.data)
-        }
+        path: '/allrecovered',
+        element: <RecoveredItems />
       },
 
       {
         path:'/my-items',
         element:<PrivateRoute>
-          <MyItems></MyItems>
+         
+         <MyItems></MyItems>
+      
         </PrivateRoute>,
        
       },

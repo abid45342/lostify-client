@@ -1,23 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
-import { Link, Links, useNavigate } from 'react-router-dom';
-import UpdateItem from './UpdateItem';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true); // Add loading state
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-
-        axios.get(`http://localhost:5000/items?email=${user.email}`,{withCredentials:true})
-        .then(res=>setItems(res.data))
-        
-            .catch((error) => console.error('Error fetching items:', error));
-    }, []);
- 
+        axios
+            .get(`http://localhost:5000/items?email=${user.email}`, { withCredentials: true })
+            .then((res) => {
+                setItems(res.data);
+                setLoading(false); // Set loading to false after data is fetched
+            })
+            .catch((error) => {
+                console.error('Error fetching items:', error);
+                setLoading(false); // Set loading to false even if there's an error
+            });
+    }, [user.email]);
 
     const handleDelete = (itemId) => {
         const confirmation = window.confirm('Are you sure you want to delete this item?');
@@ -33,17 +37,23 @@ const MyItems = () => {
                 .catch((error) => console.error('Error deleting item:', error));
         }
     };
+
     const handleUpdate = (item) => {
         navigate('/updateItem', { state: { item } }); // Navigate and pass item via state
     };
-   
 
-    
-console.log(items)
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <span className="loading loading-ring loading-lg"></span> {/* Loading Spinner */}
+            </div>
+        );
+    }
+
     return (
         <div className="container mx-auto p-4">
             <Helmet>
-            <title>Manage My Items</title>
+                <title>Manage My Items</title>
             </Helmet>
             <h1 className="text-2xl font-bold mb-4">Manage My Items</h1>
             {items.length > 0 ? (
@@ -63,13 +73,13 @@ console.log(items)
                                 <td className="border px-4 py-2">{item.category}</td>
                                 <td className="border px-4 py-2">{item.location}</td>
                                 <td className="border px-4 py-2 flex space-x-2">
-                        
-                                    <button onClick={()=>{handleUpdate(item);}} className="bg-blue-500 text-white
-                                        py-1 px-3 rounded hover:bg-blue-600">
-                                            Update
+                                    <button
+                                        onClick={() => handleUpdate(item)}
+                                        className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                                    >
+                                        Update
+                                    </button>
 
-                                        </button>
-                                    
                                     <button
                                         onClick={() => handleDelete(item._id)}
                                         className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
