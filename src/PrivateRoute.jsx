@@ -10,7 +10,7 @@ const PrivateRoute = ({children}) => {
     console.log(location)
 
     if(loading){
-        return <span className="loading loading-ring loading-lg" />
+        return <span className="loading loading-bars loading-lg"></span>
 
             
            

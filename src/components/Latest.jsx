@@ -62,7 +62,7 @@ const Latest = () => {
                         <img
                             src={item.thumbnail || 'https://via.placeholder.com/150'}
                             alt={item.title || 'Item Image'}
-                            className="w-full h-48 object-cover"
+                            className="w-full h-48 "
                         />
                         <div className="p-4">
                             <h3 className="text-xl font-semibold">{item.title || 'Unknown Item'}</h3>

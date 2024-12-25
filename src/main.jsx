@@ -51,7 +51,9 @@ const router = createBrowserRouter([
       },
       {
         path: '/allrecovered',
-        element: <RecoveredItems />
+        element: <PrivateRoute>
+          <RecoveredItems />
+        </PrivateRoute>
       },
 
       {

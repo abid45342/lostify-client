@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 const Register = () => {
-    const { createUser, updateUserProfile, } = useContext(AuthContext);
+    const { createUser, updateUserProfile,setUser } = useContext(AuthContext);
     const navigate = useNavigate(); // Use useNavigate for programmatic navigation
 
     const handleRegister = (e) => {
@@ -30,11 +30,18 @@ const Register = () => {
         // Create user with email and password
         createUser(email, password)
             .then((result) => {
-                // Update user profile with name and photoURL
+             console.log(result)
                 return updateUserProfile( name, photoURL );
 
             })
             .then(() => {
+                const userData = {
+                    name,
+                    email,
+                    photoURL
+                  };
+                  setUser(userData);
+              
                 Swal.fire({
                     icon: 'success',
                     title: 'Registration Successful',

@@ -19,6 +19,8 @@ const MyItems = () => {
                 setLoading(false); // Set loading to false after data is fetched
             })
             .catch((error) => {
+
+
                 console.log(error.status)
                 if ((error.status === 401 || error.status === 403)) {
                     navigate('/login');
@@ -26,7 +28,7 @@ const MyItems = () => {
                 console.error('Error fetching items:', error);
                 setLoading(false); // Set loading to false even if there's an error
             });
-    }, [user.email]);
+    }, []);
 
 
 

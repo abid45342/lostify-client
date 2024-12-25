@@ -56,12 +56,15 @@ const AuthProvider = ({ children }) => {
                 const user = { email: currentUser.email }
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {
+                        setLoading(false);
+
                         console.log("login token", res.data);
                     })
             }
             else {
                 axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
                     .then(res => {
+                        setLoading(false);
                         console.log("logout token", res.data);
                     })
             }
@@ -77,6 +80,7 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
+        setUser,
         loading,
         createUser,
         singInUser,
