@@ -9,8 +9,7 @@ const Latest = () => {
 
     // Fetch data from the backend using axios with credentials
     useEffect(() => {
-        axios
-            .get('http://localhost:5000/allitems', { withCredentials: true })
+        axios.get('http://localhost:5000/allitems', { withCredentials: true })
             .then(res => {
                 setItems(res.data);
                 setLoading(false); // Stop loading once data is fetched

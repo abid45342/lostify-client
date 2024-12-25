@@ -80,11 +80,11 @@
 
 // export default ItemDetails;
 
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import RecoveryModal from '../components/RecoveryModal';
-import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import { useNavigate, useParams } from 'react-router-dom';
+import RecoveryModal from '../components/RecoveryModal';
 
 const ItemDetails = () => {
   const { id } = useParams(); // Get item ID from URL params
@@ -153,9 +153,8 @@ const ItemDetails = () => {
       <p className="text-lg">Description: {item.description}</p>
       <p className="text-lg">Date Lost: {new Date(item.dateLostFound).toLocaleDateString()}</p>
       <button
-        className={`mt-4 py-2 px-4 rounded-lg text-white ${
-          item.postType === 'lost' ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-500 hover:bg-blue-600'
-        }`}
+        className={`mt-4 py-2 px-4 rounded-lg text-white ${item.postType === 'lost' ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-500 hover:bg-blue-600'
+          }`}
         onClick={handleModalOpen}
       >
         {item.postType === 'lost' ? 'Found This!' : 'This is Mine!'}
