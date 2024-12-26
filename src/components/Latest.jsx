@@ -65,9 +65,9 @@ const Latest = () => {
                             className="w-full h-48 "
                         />
                         <div className="p-4">
-                            <h3 className="text-xl font-semibold">{item.title || 'Unknown Item'}</h3>
-                            <p className="text-gray-500 text-sm mt-2">{item.category || 'Uncategorized'}</p>
-                            <p className="text-gray-500 text-sm mt-2">
+                            <h3 className="text-xl  font-semibold">{item.title || 'Unknown Item'}</h3>
+                            <p className="  text-gray-500 mt-2 text-sm  font-thin   ">{item.category || 'Uncategorized'}</p>
+                            <p className="text-gray-500 textarea-xs mt-2">
                                 {item.description ? `${item.description.slice(0, 60)}...` : 'No description available.'}
                             </p>
                             <p className="text-gray-400 text-xs mt-2">

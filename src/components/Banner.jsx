@@ -19,7 +19,7 @@ const Banner = () => {
     };
 
     return (
-        <div className="carousel w-full font-poppins h-fit md:h-[500px] lg:h-[700px] lg:-mb-32">
+        <div className="carousel w-full font-poppins h-fit md:h-[500px] lg:h-[700px] lg:-mb-32 -mb-64 md:-mb-32">
         <div id="slide1" className="carousel-item relative w-full h-2/3">
             <img
                 src="https://i.ibb.co.com/1GD8xRj/image.png"

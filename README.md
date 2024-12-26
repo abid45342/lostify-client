@@ -1,8 +1,29 @@
-# React + Vite
+# Lostify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Purpose
+Lostify is a web application designed to help users report and recover lost items. It allows users to submit lost and found items, manage submissions, and search for items. The app includes features like authentication, JWT-based login, a dynamic homepage, and a user-friendly interface.
 
-Currently, two official plugins are available:
+## Live URL
+(https://lositfy.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+- **Authentication**: Secure login system using JWT with email/password authentication and social login options.
+- **Item Submission**: Users can submit lost items with detailed descriptions, images, and locations.
+- **Item Management**: Admins can manage all submissions, approve or reject items, and update the status.
+- **Search Functionality**: Users can search for lost items using filters like category, location, or description.
+- **Responsive Design**: The app is fully responsive and works across various devices.
+- **404 Page**: Custom error page for non-existent routes.
+- **Toast/Sweet Alerts**: Notifications for actions like successful submissions or errors.
+  
+## npm Packages Used
+- `react`: For building the user interface.
+- `firebase`: For authentication, database, and hosting.
+- `react-router-dom`: For routing and navigation.
+- `jsonwebtoken`: For implementing JWT-based authentication.
+- `tailwindcss`: For styling the app with utility-first CSS.
+- `react-toastify`: For showing toast notifications.
+- `sweetalert2`: For displaying modal alerts.
+- `react-icons`: For adding icons to the app.
+
+## Installation
+1. Clone the repository:

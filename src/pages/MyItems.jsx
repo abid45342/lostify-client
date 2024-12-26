@@ -177,7 +177,7 @@ const MyItems = () => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen">
+            <div className="flex justify-center  items-center min-h-screen mb-32">
                 <span className="loading loading-ring loading-lg"></span> {/* Loading Spinner */}
             </div>
         );
@@ -227,7 +227,7 @@ const MyItems = () => {
                     </table>
                 </div>
             ) : (
-                <p className="text-gray-500 text-center mt-8">No items found. Add your first item to see it here.</p>
+                <p className="text-gray-500 text-center mt-8 mb-32">No items found. Add your first item to see it here.</p>
             )}
         </div>
     );
