@@ -31,7 +31,7 @@ const Latest = () => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen">
+            <div className="flex justify-center  items-center min-h-screen">
                 <div className="loading loading-ring loading-lg">
                     <span className="loading loading-spinner text-primary"></span>
                     <span className="loading loading-spinner text-secondary"></span>
@@ -51,7 +51,7 @@ const Latest = () => {
     }
 
     return (
-        <div className="container mx-auto my-8 mt-32">
+        <div className="container mx-auto mt-10 lg:mt-0 md:mt-0  ">
             <h2 className="text-3xl font-bold text-center mb-10">Latest Find & Lost Items</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sortedItems.map((item) => (

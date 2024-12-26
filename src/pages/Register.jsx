@@ -47,7 +47,7 @@ const Register = () => {
                     title: 'Registration Successful',
                     text: `Welcome, ${name}!`,
                 });
-                navigate('/login'); // Programmatically redirect to login page after successful registration
+                navigate('/'); // Programmatically redirect to login page after successful registration
             })
             .catch((error) => {
                 Swal.fire({
@@ -59,51 +59,71 @@ const Register = () => {
     };
 
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="min-h-screen  flex items-center justify-center my-10 w-full">
             <Helmet>
                 <title>Register</title>
             </Helmet>
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left w-full max-w-sm shrink-0">
-                    {/* Optionally, add a Lottie or other content here */}
-                </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <h1 className="ml-8 mt-4 text-5xl font-bold">Register now!</h1>
-                    <form onSubmit={handleRegister} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input type="text" name="name" placeholder="Name" className="input input-bordered" required />
+            <div className="bg-white w-full max-w-md p-8 rounded-xl shadow-xl">
+                <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Create Your Account</h2>
+                <form onSubmit={handleRegister}>
+                    <div className="mb-4">
+                        <label className="block text-lg font-medium text-gray-700">Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter your name"
+                            className="w-full p-4 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-lg font-medium text-gray-700">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            className="w-full p-4 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-lg font-medium text-gray-700">Photo URL</label>
+                        <input
+                            type="text"
+                            name="photoURL"
+                            placeholder="Enter your photo URL"
+                            className="w-full p-4 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        />
+                    </div>
+
+                    <div className="mb-6">
+                        <label className="block text-lg font-medium text-gray-700">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            className="w-full p-4 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required
+                        />
+                        <div className="mt-2 text-sm">
+                            <span
+                                className="text-blue-600 cursor-pointer"
+                                onClick={() => navigate('/login')}
+                            >
+                                Already have an account? Log in
+                            </span>
                         </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Photo URL</span>
-                            </label>
-                            <input type="text" name="photoURL" placeholder="photo URL" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <span className="label-text-alt link link-hover" onClick={() => navigate('/login')}>
-                                    Already have an account? Log in
-                                </span>
-                            </label>
-                        </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">Register</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="w-full py-3 bg-indigo-600 text-white text-lg font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300"
+                    >
+                        Register
+                    </button>
+                </form>
             </div>
         </div>
     );

@@ -6,11 +6,13 @@ import Latest from '../components/Latest';
 
 const Home = () => {
     return (
-        <div>
+        <div className='px-5'>
             <Helmet>
                 <title>Home</title>
             </Helmet>
+           <div className=''>
            <Banner></Banner>
+           </div>
            <Latest></Latest>
            <Extra></Extra>
         </div>

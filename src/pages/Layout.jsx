@@ -5,8 +5,8 @@ import Footer from '../components/Footer';
 
 const Layout = () => {
     return (
-        <div >
-           <div className='max-w-6xl mx-auto text-center ' >
+        <div className='font-sora'>
+           <div className='max-w-6xl mx-auto text-center  ' >
            <Navbar></Navbar>
            <Outlet></Outlet>
            </div>
