@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            console.log(user)
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
                 axios.post('https://server-delta-eight-10.vercel.app/jwt', user, { withCredentials: true })

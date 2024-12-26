@@ -35,12 +35,12 @@ const Register = () => {
 
             })
             .then(() => {
-                const userData = {
-                    name,
-                    email,
-                    photoURL
-                  };
-                  setUser(userData);
+                // const userData = {
+                //     name,
+                //     email,
+                //     photoURL
+                //   };
+                //   setUser(userData);
               
                 Swal.fire({
                     icon: 'success',
