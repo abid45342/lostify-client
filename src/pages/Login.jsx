@@ -140,6 +140,7 @@ const Login = () => {
                     title: 'Login Successful',
                     text: 'Welcome back!',
                 });
+                navigate('/');
             })
             .catch((error) => {
                 Swal.fire({
@@ -147,7 +148,7 @@ const Login = () => {
                     title: 'Login Failed',
                     text: error.message,
                 });
-                navigate('/');
+                
             });
     };
 
