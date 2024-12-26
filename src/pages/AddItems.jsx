@@ -130,6 +130,11 @@ const AddItems = () => {
                                 <option value="pets">Pets</option>
                                 <option value="documents">Documents</option>
                                 <option value="gadgets">Gadgets</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="personal belongings">Personal Belongings</option>
+                                <option value="accessories">Accessories</option>
+
+                                <option value="others">Others</option>
                             </select>
                         </div>
                     </div>

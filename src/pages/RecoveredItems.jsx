@@ -176,7 +176,8 @@ const RecoveredItems = () => {
           {allRecoveredItems && allRecoveredItems.length > 0 ? (
             isTableLayout ? (
               // Table Layout
-              <table className="table-auto w-full border-collapse border border-gray-300 mb-32">
+   <div className='overflow-x-auto'>
+                  <table className="table-auto w-full border-collapse border border-gray-300 mb-32 ">
                 <thead>
                   <tr className="bg-gray-200">
                     <th className="border px-4 py-2">Item Name</th>
@@ -204,6 +205,7 @@ const RecoveredItems = () => {
                   ))}
                 </tbody>
               </table>
+   </div>
             ) : (
               // Card Layout
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

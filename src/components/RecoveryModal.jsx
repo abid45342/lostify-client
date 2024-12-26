@@ -12,7 +12,7 @@ const RecoveryModal = ({ item, closeModal }) => {
     e.preventDefault(); // Prevent page refresh on form submit
 
     // Check if item is already recovered
-    if (item.status === 'recovered') {
+    if (item.status == 'recovered') {
       alert('This item is already marked as recovered.');
       return;
     }
@@ -39,6 +39,7 @@ const RecoveryModal = ({ item, closeModal }) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(recoveryData),
+      credentials: 'include',
     })
       .then(res => res.json())
       .then(data => {
@@ -47,7 +48,8 @@ const RecoveryModal = ({ item, closeModal }) => {
           fetch(`https://server-delta-eight-10.vercel.app/items/${item._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: 'recovered' })
+            body: JSON.stringify({ status: 'recovered' }),
+            credentials: 'include',
           });
           item.status = 'recovered';
 
