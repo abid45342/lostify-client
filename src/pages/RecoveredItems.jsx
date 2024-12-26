@@ -151,7 +151,7 @@ const RecoveredItems = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 mb-32">
       <Helmet>
         <title>Recovered Items</title>
       </Helmet>
@@ -176,7 +176,7 @@ const RecoveredItems = () => {
           {allRecoveredItems && allRecoveredItems.length > 0 ? (
             isTableLayout ? (
               // Table Layout
-              <table className="table-auto w-full border-collapse border border-gray-300">
+              <table className="table-auto w-full border-collapse border border-gray-300 mb-32">
                 <thead>
                   <tr className="bg-gray-200">
                     <th className="border px-4 py-2">Item Name</th>
