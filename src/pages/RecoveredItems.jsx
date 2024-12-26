@@ -117,13 +117,15 @@
 
 
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { FaList, FaTh } from 'react-icons/fa'; // Import React Icons
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const RecoveredItems = () => {
-  // const {user}=useContext(AuthContext)
+  const { user } = useContext(AuthContext);
+  console.log(user)
   const navigate = useNavigate();
   const [allRecoveredItems, setAllRecoveredItems] = useState([]);
   const [isTableLayout, setIsTableLayout] = useState(false);
@@ -131,7 +133,7 @@ const RecoveredItems = () => {
 
   useEffect(() => {
     // Fetch data from server
-    axios.get('https://server-delta-eight-10.vercel.app/allrecovered', { withCredentials: true })
+    axios.get(`https://server-delta-eight-10.vercel.app/allrecovered/${user.email}`, { withCredentials: true })
       .then((response) => {
         setAllRecoveredItems(response.data);
         setLoading(false); // Data is loaded, set loading to false
@@ -176,36 +178,36 @@ const RecoveredItems = () => {
           {allRecoveredItems && allRecoveredItems.length > 0 ? (
             isTableLayout ? (
               // Table Layout
-   <div className='overflow-x-auto'>
-                  <table className="table-auto w-full border-collapse border border-gray-300 mb-32 ">
-                <thead>
-                  <tr className="bg-gray-200">
-                    <th className="border px-4 py-2">Item Name</th>
-                    <th className="border px-4 py-2">Category</th>
-                    <th className="border px-4 py-2">Recovered Location</th>
-                    <th className="border px-4 py-2">Recovered By</th>
-                    <th className="border px-4 py-2">Recovery Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {allRecoveredItems.map((item) => (
-                    <tr key={item._id} className="hover:bg-gray-100">
-                      <td className="border px-4 py-2">{item.itemName}</td>
-                      <td className="border px-4 py-2">{item.itemCategory}</td>
-                      <td className="border px-4 py-2">{item.recoveredLocation}</td>
-                      <td className="border px-4 py-2">
-                        <div className="flex items-center space-x-2">
-                          <span>{item.recoveredBy.name}</span>
-                        </div>
-                      </td>
-                      <td className="border px-4 py-2">
-                        {new Date(item.recoveryDate).toLocaleDateString()}
-                      </td>
+              <div className='overflow-x-auto'>
+                <table className="table-auto w-full border-collapse border border-gray-300 mb-32 ">
+                  <thead>
+                    <tr className="bg-gray-200">
+                      <th className="border px-4 py-2">Item Name</th>
+                      <th className="border px-4 py-2">Category</th>
+                      <th className="border px-4 py-2">Recovered Location</th>
+                      <th className="border px-4 py-2">Recovered By</th>
+                      <th className="border px-4 py-2">Recovery Date</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-   </div>
+                  </thead>
+                  <tbody>
+                    {allRecoveredItems.map((item) => (
+                      <tr key={item._id} className="hover:bg-gray-100">
+                        <td className="border px-4 py-2">{item.itemName}</td>
+                        <td className="border px-4 py-2">{item.itemCategory}</td>
+                        <td className="border px-4 py-2">{item.recoveredLocation}</td>
+                        <td className="border px-4 py-2">
+                          <div className="flex items-center space-x-2">
+                            <span>{item.recoveredBy.name}</span>
+                          </div>
+                        </td>
+                        <td className="border px-4 py-2">
+                          {new Date(item.recoveryDate).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : (
               // Card Layout
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
