@@ -20,11 +20,11 @@ const Banner = () => {
 
     return (
         <div className="carousel w-full font-poppins h-fit md:h-[500px] lg:h-[700px] lg:-mb-32 -mb-64 md:-mb-32">
-        <div id="slide1" className="carousel-item relative w-full h-2/3">
+        <div id="slide1" className="carousel-item relative w-full h-2/3 ">
             <img
                 src="https://i.ibb.co.com/1GD8xRj/image.png"
                 alt="Lost item"
-                className="w-full h-full  "
+                className="w-full h-full rounded-3xl "
             />
             <div className="absolute inset-0 flex justify-center items-center text-white  ">
             <div className="text-center text-black ">
@@ -52,7 +52,7 @@ const Banner = () => {
             <img
                 src="https://i.ibb.co.com/wsSLs8b/image.png"
                 alt="Community support"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-3xl"
             />
             <div className="absolute inset-0 flex justify-center items-center text-white ">
                 <div className="text-center text-black">
@@ -80,7 +80,7 @@ const Banner = () => {
             <img
                 src="https://i.ibb.co.com/qxWpHg1/image.png"
                 alt="Submit lost item"
-                className="w-full h-full "
+                className="w-full h-full rounded-3xl"
             />
             <div className="absolute inset-0 flex justify-center items-center text-white ">
                 <div className="text-center">
@@ -104,19 +104,19 @@ const Banner = () => {
                 <a href="#slide4" className="btn btn-circle w-5">❯</a>
             </div>
         </div>
-        <div id="slide4" className="carousel-item relative w-full h-2/3">
+        <div id="slide4" className="carousel-item relative w-full h-2/3 objext-cover ">
             <img
                 src="https://i.ibb.co.com/wYqR7B3/image.png"
                 alt="Success stories"
-                className="w-full h-full "
+                className="h-80 w-full lg:h-full lg:w-full rounded-3xl "
             />
-            <div className="absolute inset-0 flex justify-center items-center text-white">
-                <div className="text-center">
+            <div className="absolute inset-0 flex  justify-center items-center text-white">
+                <div className="text-center ">
                     <motion.h2
                         {...textAnimation}
-                        className="text-3xl md:text-5xl font-bold"
+                        className="text-3xl md:text-5xl font-poppins  text-black md:mt-40 mt-64"
                     >
-                        {/* Success Stories */}
+                        Success Stories
                     </motion.h2>
                     <motion.p
                         {...textAnimation}
