@@ -11,7 +11,7 @@ const Latest = () => {
     // Fetch data from the backend using axios with credentials
     useEffect(() => {
         axios
-            .get('https://server-delta-eight-10.vercel.app/allitems', { withCredentials: true })
+            .get('http://localhost:5000/allitems', { withCredentials: true })
             .then((res) => {
                 setItems(res.data || []); // Ensure `items` is an array
                 setLoading(false);
@@ -51,7 +51,7 @@ const Latest = () => {
     }
 
     return (
-        <div className="container mx-auto mt-10 lg:mt-0 md:mt-0  ">
+        <div className="container mx-auto mt-10 lg:mt-10 md:mt-0  ">
             <h2 className="text-3xl font-bold text-center mb-10">Latest Find & Lost Items</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sortedItems.map((item) => (

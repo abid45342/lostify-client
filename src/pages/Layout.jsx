@@ -7,8 +7,12 @@ const Layout = () => {
     return (
         <div className='font-sora'>
            <div className='max-w-6xl mx-auto text-center  ' >
-           <Navbar></Navbar>
-           <Outlet></Outlet>
+       
+          <Navbar></Navbar>
+     
+         
+         < Outlet ></Outlet>
+    
            </div>
         
          <Footer></Footer>

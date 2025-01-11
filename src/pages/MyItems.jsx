@@ -12,7 +12,7 @@
 
 //     useEffect(() => {
 //         axios
-//             .get(`https://server-delta-eight-10.vercel.app/items?email=${user.email}`, { withCredentials: true })
+//             .get(`http://localhost:5000/items?email=${user.email}`, { withCredentials: true })
 //             .then((res) => {
 
 //                 setItems(res.data);
@@ -36,7 +36,7 @@
 //         const confirmation = window.confirm('Are you sure you want to delete this item?');
 //         if (confirmation) {
 //             axios
-//                 .delete(`https://server-delta-eight-10.vercel.app/items/${itemId}`, {
+//                 .delete(`http://localhost:5000/items/${itemId}`, {
 //                     withCredentials: true, // Include credentials (cookies or authentication headers) in the request
 //                 })
 //                 .then(() => {
@@ -138,7 +138,7 @@ const MyItems = () => {
 
     useEffect(() => {
         axios
-            .get(`https://server-delta-eight-10.vercel.app/items?email=${user.email}`, { withCredentials: true })
+            .get(`http://localhost:5000/items?email=${user.email}`, { withCredentials: true })
             .then((res) => {
                 setItems(res.data);
                 setLoading(false); // Set loading to false after data is fetched
@@ -157,7 +157,7 @@ const MyItems = () => {
         const confirmation = window.confirm('Are you sure you want to delete this item?');
         if (confirmation) {
             axios
-                .delete(`https://server-delta-eight-10.vercel.app/items/${itemId}`, {
+                .delete(`http://localhost:5000/items/${itemId}`, {
                     withCredentials: true, // Include credentials (cookies or authentication headers) in the request
                 })
                 .then(() => {

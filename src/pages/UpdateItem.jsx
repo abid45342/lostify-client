@@ -29,7 +29,7 @@ const UpdateItem = () => {
 
     axios
       .patch(
-        `https://server-delta-eight-10.vercel.app/items/${item._id}`,
+        `http://localhost:5000/items/${item._id}`,
         updatedData,
         {
           headers: { 'Content-Type': 'application/json' },
