@@ -11,7 +11,7 @@ const Latest = () => {
     // Fetch data from the backend using axios with credentials
     useEffect(() => {
         axios
-            .get('http://localhost:5000/allitems', { withCredentials: true })
+            .get('https://server-delta-eight-10.vercel.app/allitems', { withCredentials: true })
             .then((res) => {
                 setItems(res.data || []); // Ensure `items` is an array
                 setLoading(false);

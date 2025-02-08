@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
             console.log(user)
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://server-delta-eight-10.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         setLoading(false);
 
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
                     })
             }
             else {
-                axios.post('http://localhost:5000/logout', {}, { withCredentials: true })
+                axios.post('https://server-delta-eight-10.vercel.app/logout', {}, { withCredentials: true })
                     .then(res => {
                         setLoading(false);
                         console.log("logout token", res.data);
